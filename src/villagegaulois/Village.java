@@ -80,7 +80,7 @@ public class Village {
 			}
 			int nbEtalVide = etals.length - nbEtalOccupee;
 			if (nbEtalVide != 0) {
-				chaine.append("Il reste " + nbEtalVide + " étals non utilisées dans le marché.\n");
+				chaine.append("Il reste " + nbEtalVide + " Ã©tals non utilisÃ©es dans le marchÃ©.\n");
 			}
 			return chaine.toString();
 		}
@@ -114,7 +114,10 @@ public class Village {
 		return null;
 	}
 
-	public String afficherVillageois() {
+	public String afficherVillageois() throws VillageSansChefException {
+		if(chef == null) {
+			throw new VillageSansChefException("Pas de chef.");
+		}
 		StringBuilder chaine = new StringBuilder();
 		if (nbVillageois < 1) {
 			chaine.append("Il n'y a encore aucun habitant au village du chef "
@@ -135,9 +138,9 @@ public class Village {
 		int numeroEtal = marche.trouverEtalLibre();
 		if(numeroEtal != -1) {
 			marche.utiliserEtal(numeroEtal, vendeur, produit, nbProduit);
-			chaine.append("Le vendeur " + vendeur.getNom() + " vend des " + produit + " à l'étal n°" + (numeroEtal+1) + ". ");
+			chaine.append("Le vendeur " + vendeur.getNom() + " vend des " + produit + " Ã  l'Ã©tal nÂ°" + (numeroEtal+1) + ". ");
 		} else {
-			chaine.append("Il n'y a plus de place sur le marché.");
+			chaine.append("Il n'y a plus de place sur le marchï¿½.");
 		}
 		return chaine.toString();
 	}
@@ -146,9 +149,9 @@ public class Village {
 		StringBuilder chaine = new StringBuilder();
 		Etal[] vendeursProduit = marche.trouverEtals(produit);
 		if(vendeursProduit.length == 0) {
-			chaine.append("Il n'y a pas de vendeur qui propose des " + produit + " au marché.");
+			chaine.append("Il n'y a pas de vendeur qui propose des " + produit + " au marchÃ©.");
 		} else if (vendeursProduit.length == 1) {
-			chaine.append("Seul le vendeur " + vendeursProduit[0].getVendeur().getNom() + " propose des " + produit + " au marché.");
+			chaine.append("Seul le vendeur " + vendeursProduit[0].getVendeur().getNom() + " propose des " + produit + " au marchÃ©.");
 		} else {
 			chaine.append("Les vendeurs qui proposent des " + produit + " sont : ");
 			for (int i = 0; i<vendeursProduit.length; i++) {
