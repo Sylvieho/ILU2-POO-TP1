@@ -54,13 +54,14 @@ public class Etal {
 	public String acheterProduit(int quantiteAcheter, Gaulois acheteur) throws IllegalArgumentException, IllegalStateException{
 		StringBuilder chaine = new StringBuilder();
 		
+		if(quantiteAcheter < 0) {
+			throw new IllegalArgumentException("Quantité à acheter négative");
+		}
+		if(!this.isEtalOccupe()) {
+			throw new IllegalStateException("Etal vide.");
+		}
+		
 		try {
-			if(quantiteAcheter < 0) {
-				throw new IllegalArgumentException("Quantité à acheter négative");
-			}
-			if(!this.isEtalOccupe()) {
-				throw new IllegalStateException("Etal vide.");
-			}
 			chaine.append(acheteur.getNom() + " veut acheter " + quantiteAcheter
 					+ " " + produit + " à " + vendeur.getNom());
 			if (quantite == 0) {

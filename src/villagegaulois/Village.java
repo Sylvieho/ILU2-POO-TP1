@@ -19,21 +19,21 @@ public class Village {
 		marche = new Marche(nbEtals);
 	}
 	
-	public static class Marche{
+	private static class Marche{
 		private Etal[] etals;
 		
-		public Marche(int nbEtals) {
+		private Marche(int nbEtals) {
 			etals = new Etal[nbEtals];
 			for(int i = 0; i<nbEtals; i++) {
 				etals[i] = new Etal();
 			}
 		}
 		
-		public void utiliserEtal(int indiceEtal, Gaulois vendeur, String produit, int nbProduit){
+		private void utiliserEtal(int indiceEtal, Gaulois vendeur, String produit, int nbProduit){
 			etals[indiceEtal].occuperEtal(vendeur, produit, nbProduit);
 		}
 		
-		public int trouverEtalLibre() {
+		private int trouverEtalLibre() {
 			for (int i = 0; i<etals.length; i++) {
 				if(!etals[i].isEtalOccupe()) {
 					return i;
@@ -42,7 +42,7 @@ public class Village {
 			return -1;
 		}
 		
-		public Etal[] trouverEtals(String produit) {
+		private Etal[] trouverEtals(String produit) {
 			int nbEtalsAvecProduit = 0;
 			for (int i = 0; i<etals.length; i++) {
 				if(etals[i].isEtalOccupe() && etals[i].contientProduit(produit)) {
@@ -60,7 +60,7 @@ public class Village {
 			return etalsVendantProduit;
 		}
 		
-		public Etal trouverVendeur(Gaulois gaulois) {
+		private Etal trouverVendeur(Gaulois gaulois) {
 			for(int i = 0; i<etals.length; i++) {
 				if(etals[i].isEtalOccupe() && etals[i].getVendeur() == gaulois) {
 					return etals[i];
@@ -69,7 +69,7 @@ public class Village {
 			return null;
 		}
 		
-		public String afficherMarche() {
+		private String afficherMarche() {
 			StringBuilder chaine = new StringBuilder();
 			int nbEtalOccupee = 0;
 			for(int i = 0; i<etals.length; i++) {

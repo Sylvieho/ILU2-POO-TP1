@@ -7,7 +7,6 @@ public class Personnage {
 	public Personnage(String nom, int force) {
 		this.nom = nom;
 		this.force = force;
-		// Invariant
 		assert force > 0;
 	}
 
